@@ -1,0 +1,110 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    {{ lead.firstname }} {{ lead.lastname }}
+{% endblock %}
+
+{% block content %}
+<style>
+    .bold-label {
+        font-weight: bold;
+    }
+    .italic-comment {
+        font-style: italic;
+    }
+    .info-container {
+        float: left;
+        width: 50%;
+    }
+    .comment-box {
+        float: right;
+        width: 40%;
+        border: 0px solid #ccc;
+        padding: 10px;
+    }
+    .additional-info {
+        clear: both;
+        width: 100%; /* Adjust the width as needed */
+        text-align: right;
+    }
+</style>
+
+<div class="py-6 px-6">
+    <div class="info-container">
+        <h1 class="text-xl bold-label">{{ lead.firstname }} {{ lead.lastname }}</h1>
+
+        <div>
+            <p class="bold-label">Company:</p>
+            <p>
+                {% if lead.company %}
+                    {{ lead.company }}
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <p class="bold-label">E-Mail:</p>
+            <p>
+                {% if lead.email %}
+                    {{ lead.email }}
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <p class="bold-label">Phone:</p>
+            <p>
+                {% if lead.phone %}
+                    {{ lead.phone }}
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <p class="bold-label">Priority:</p>
+            <p>
+                {% if lead.priority %}
+                    {{ lead.get_priority_display }}
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <p class="bold-label">Status:</p>
+            <p>
+                {% if lead.get_status_display %}
+                    {{ lead.status }}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="comment-box">
+        <div class="bg-slate-300">
+            <p class="bold-label">Comment:</p>
+            <p class="italic-comment">
+                {% if lead.comment %}
+                    {{ lead.comment }}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="additional-info">
+        <div>
+            <p class="bold-label">Created by:</p>
+            <p>{{ lead.created_by }}</p>
+        </div>
+
+        <div>
+            <p class="bold-label">Created at:</p>
+            <p>{{ lead.created_at|date:"d.M.Y, H:i" }}</p>
+        </div>
+
+        <div>
+            <p class="bold-label">Last Modified:</p>
+            <p>{{ lead.modified_at|date:"d.M.Y, H:i" }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

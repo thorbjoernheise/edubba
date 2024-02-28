@@ -38,9 +38,30 @@
         color: #000000; /* Change text color */
         font-weight: bold; /* Add additional styling */
         }
+        .notification {
+        position: fixed;
+        top: 10px; /* Adjust the top position as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+    }
     </style>
+
 </head>
 <body>   
+
+ 
+    <!-- Messages-->
+    {% if messages %}
+    <div class="notification">
+        {% for message in messages %}
+            <div class="py-4 px-8 {% if message.tags == 'warning' %}bg-red-300{% elif message.tags == 'success' %}bg-green-300{% endif %} rounded-xl opacity-80">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+     
 
     <!-- Top-Menu -->
     <nav class="fixed top-0 left-0 right-0 z-50 py-4 px-6 flex justify-between bg-slate-950">
@@ -58,6 +79,8 @@
             {% endif %}
         </div>
     </nav>
+
+
 
     <!-- Left Menu -->
     {% if user.is_authenticated %}

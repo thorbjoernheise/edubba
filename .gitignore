@@ -14,8 +14,7 @@ db.sqlite3
 .DS_Store
 
 # Virtual Environment
-venv/
-venv3/
+django_env/
 *.env
 
 # IDE specific
@@ -27,3 +26,5 @@ venv3/
 
 # Local development settings
 local_settings.py
+
+

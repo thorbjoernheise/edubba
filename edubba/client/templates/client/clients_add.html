@@ -2,17 +2,82 @@
 
 {% block title %}Add Client{% endblock %}
 
-{% block content%}
-<div class="py-6 px-6">
-    <h1 class="text-xl">Add Client</h1>
+{% block content %}
 
-    <form method="post" action=".">
+<style>
+    /* Apply styles to individual input fields and labels */
+    .form-container {
+        display: flex;
+        justify-content: space-between; 
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        margin-right: 3rem;
+        margin-left: 3rem;
+    }
+    .input-container {
+        width: 45%; 
+        margin-bottom: 10px; 
+    }
+    .input-container label {
+        display: block; 
+        margin-bottom: 5px; 
+    }
+    .custom-input {
+        width: 100%;
+        background-color: #1e293b;
+    }
+    .choices-container {
+        width: 45%; 
+        margin-left: 2rem;
+    }
+    .choices-container select {
+        width: calc(100% - 20px); 
+        background-color: #1e293b;
+    }
+    .submit-button {
+        align-self: flex-end;
+        margin-right: 4rem;
+    }
+
+</style>
+
+<div class="headline">
+    <h1 class="text-3xl">
+        Add a new client
+    </h1>
+</div>
+<div class="content-box bg-slate-900">
+    <form method="post" action="." class="form-container">
         {% csrf_token %}
 
-        {{ form.as_p }}
-        <button class="py-4 px-8 bg-slate-950 text-white">Submit</button>
+        <!-- Render each input field separately -->
+        <div class="input-container">
+            {% for field in form %}
+                {% if field.field.widget.input_type != 'select' %}
+                    <div>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id }}" class="custom-input">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="choices-container">
+            {% for field in form %}
+                {% if field.field.widget.input_type == 'select' %}
+                    <div class="input-container">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <select name="{{ field.name }}" id="{{ field.id }}">
+                            {% for choice in field.field.widget.choices %}
+                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button type="submit" class="submit-button py-2 px-6 opacity-80 rounded inline-flex items-center bg-slate-950 hover:bg-slate-800">Submit</button>
     </form>
 </div>
 
-    
-    {% endblock %}
+{% endblock %}

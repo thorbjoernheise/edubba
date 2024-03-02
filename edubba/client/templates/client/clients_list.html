@@ -47,28 +47,23 @@
 
                                 <!-- Firstname-->                          
                                 <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">
-                                    <a href="#">{{ client.firstname }}</a>
+                                    <a href="{% url 'clients_detail' client.id %}">{{ client.firstname }}</a>
                                 </td>
                                 <!-- Lastname -->
-                                <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">{{ client.lastname }}</td>
+                                <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">
+                                    <a href="{% url 'clients_detail' client.id %}">{{ client.firstname }}</a>
+                                </td>
                                  <!-- Options-->
                                 <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-300' %} px-6 py-4">
 
                                     <div class="button-container">
                                         <!-- View Button -->
-                                        <a href="#" class="text-neutral-400 hover:text-neutral-800">
+                                        <a href="{% url 'clients_detail' client.id %}" class="text-neutral-400 hover:text-neutral-800">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                                             </svg>
                                         </a>
-                                        <!-- Convert to Client Button -->
-                                        <a href="#" class="text-green-600 hover:text-green-900">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                                              </svg>
-                                              
-                                        </a>
-                                    
+        
                                         <!-- Edit Button -->
                                         <a href="#" class="text-neutral-400 hover:text-neutral-800">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

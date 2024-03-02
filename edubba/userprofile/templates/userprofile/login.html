@@ -3,14 +3,62 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1 class="text-xl">Login</h1>
 
-<form method="post" action=".">
-    {%csrf_token %}
+<style>
+    /* Apply styles to individual input fields and labels */
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-right: 5rem;
+    }
 
-    {{form.as_p }}
+    .input-container {
+        width: 100%;
+        max-width: 300px; /* Adjust the maximum width of the input fields */
+        margin-bottom: 10px; /* Adjust the spacing between input fields */
+    }
 
-    <button class="py-4 px-8 bg-slate-950 text-white">Submit</button>
+    .input-container label {
+        display: block; /* Ensure labels are displayed as block elements */
+        margin-bottom: 5px; /* Adjust the spacing between label and input field */
+    }
+
+    .custom-input {
+        width: 100%;
+        background-color: #1e293b;
+        /* Add any other custom styles here */
+    }
+
+
+</style>
+
+<div class="headline">
+    <h1 class="text-3xl">
+        Welcome to edubba!
+    </h1>
+</div>
+<div class="content-box bg-slate-900">
+<form method="post" action="." class="form-container">
+    {% csrf_token %}
+
+    <!-- Separate input fields into individual lines -->
+    <div class="input-container">
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" id="id_username" class="custom-input">
+    </div>
+
+    <div class="input-container">
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" id="id_password" class="custom-input">
+    </div>
+
+    <div class="input-container">
+        <button type="submit" class="py-2 px-6 opacity-80 rounded inline-flex items-center bg-slate-950 hover:bg-slate-800">Login</button>
+    </div>
+
 </form>
-
+</div>
 {% endblock %}

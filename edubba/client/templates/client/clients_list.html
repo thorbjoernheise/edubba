@@ -13,10 +13,10 @@
 <div class="py-6 px-6">
     <h1 class="text-xl">Clients</h1>
 
-    <!-- Add Leads Button -->
+    <!-- Add Client Button -->
     
     <div class="flex justify-end mb-2">
-        <a href="#" class="inline-flex items-center py-1 px-6 bg-slate-900 hover:bg-slate-800 text-white">
+        <a href="{% url 'clients_add' %}" class="inline-flex items-center py-1 px-6 bg-slate-900 hover:bg-slate-800 text-white">
             <span>Add Client</span>
             <span class="ml-2 flex items-center justify-center text-lg text-green-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -26,7 +26,7 @@
         </a>
     </div>
 
-    <!-- List of Leads -->
+    <!-- List of Clients -->
 
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -51,7 +51,7 @@
                                 </td>
                                 <!-- Lastname -->
                                 <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">
-                                    <a href="{% url 'clients_detail' client.id %}">{{ client.firstname }}</a>
+                                    <a href="{% url 'clients_detail' client.id %}">{{ client.lastname }}</a>
                                 </td>
                                  <!-- Options-->
                                 <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-300' %} px-6 py-4">

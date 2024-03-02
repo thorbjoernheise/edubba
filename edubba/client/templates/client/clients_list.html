@@ -7,6 +7,14 @@
     .button-container {
         display: flex;
     }
+    .table-border{
+        border-spacing: 0;
+        border-collapse: separate;
+    }
+    table {
+        border-radius: 8px;
+        overflow: hidden; /* Ensure rounded corners are visible */
+    }
 </style>
 
 
@@ -33,28 +41,28 @@
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table class="min-w-full text-left text-sm font-light">
-                        <thead class="border-b font-medium dark:border-neutral-500">
+                        <thead class="font-medium">
                             <tr>
-                                <th scope="col" class="px-6 py-4 bg-slate-900 text-white">First</th>
-                                <th scope="col" class="px-6 py-4 bg-slate-900 text-white">Last</th>
-                                <th scope="col" class="px-6 py-4 bg-slate-900 text-white">Options</th>
+                                <th scope="col" class="px-6 py-4 bg-slate-900">First</th>
+                                <th scope="col" class="px-6 py-4 bg-slate-900">Last</th>
+                                <th scope="col" class="px-6 py-4 bg-slate-900">Options</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {% for client in clients%}
-                            <tr class="border-b dark:border-neutral-500">
+                            <tr class="table-border">
 
                                 <!-- Firstname-->                          
-                                <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">
+                                <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-900'  %} px-6 py-4">
                                     <a href="{% url 'clients_detail' client.id %}">{{ client.firstname }}</a>
                                 </td>
                                 <!-- Lastname -->
-                                <td class="whitespace-nowrap {% cycle 'bg-slate-800 text-white' 'bg-slate-300' %} px-6 py-4">
+                                <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-900'  %} px-6 py-4">
                                     <a href="{% url 'clients_detail' client.id %}">{{ client.lastname }}</a>
                                 </td>
                                  <!-- Options-->
-                                <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-300' %} px-6 py-4">
+                                <td class="whitespace-nowrap {% cycle 'bg-slate-800' 'bg-slate-900' %} px-6 py-4">
 
                                     <div class="button-container">
                                         <!-- View Button -->

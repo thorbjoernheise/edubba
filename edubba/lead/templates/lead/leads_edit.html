@@ -3,16 +3,134 @@
 {% block title %}Edit lead{% endblock %}
 
 {% block content%}
-<div class="py-6 px-6">
-    <h1 class="text-xl">Edit Lead</h1>
 
-    <form method="post" action=".">
-        {% csrf_token %}
+<style>
+    .form-container{
+        display: flex;
+        justify-content: space-between; 
+        height: 20rem;
+        width: 30rem;
+        margin-left: 8rem;
+        margin-top: 3rem;
+    }
+    .box-left{
+        height: auto;
+        width: auto;
+        margin-right: 2rem;
+    }
+    .box-right{
+        height: 20rem;
+        width: auto;
+    }
+    .inner-right-top {
+        height: 5.15rem;
+        width: auto;
+        align-items: start;
+    }
+    .inner-right-bottom {
+        height: 10rem;
+        width: auto;
+        display: flex;
+        justify-content: space-between; 
+        align-items: flex-end; 
+    }
+    .inner-right-bottom-left {
+        height: 10rem;
+        width: auto;
+        display: flex;
+        align-items: flex-end; 
+    }
+    .inner-right-bottom-right {
+        height: 10rem;
+        width: auto;
+        display: flex;
+        align-items: flex-end; 
+    }
 
-        {{ form.as_p }}
-        <button class="py-4 px-8 bg-slate-950 text-white">Submit</button>
-    </form>
+    /* Style for the inputs */
+
+    .custom-textarea {
+        height: 7.5rem; 
+        resize: vertical; 
+    }
+    .custom-input, .custom-textarea, .choices-container select {
+        background-color: #1e293b; /* Set the same background color */
+        color: #fff; /* Set text color */
+    }
+    
+ 
+</style>
+<div class="headline">
+    <h1 class="text-3xl">
+        Edit a Lead
+    </h1>
 </div>
 
-    
-    {% endblock %}
+<div class="content-box bg-slate-900">
+
+    <form method="post" action="." class="form-container">
+        {% csrf_token %}
+
+        <!-- Left Box for standard input -->
+        <div class="box-left">
+            {% for field in form %}
+                {% if field.name != 'comment' %}
+                    {% if field.field.widget.input_type != "select" %}
+                        <div>
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id }}" class="custom-input" value="{{ field.value }}">
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Right Box CONTAINER-->
+        <div class="box-right">
+
+            <!-- Comment Section-->
+            <div class="inner-right-top">
+                {% for field in form %}
+                    {% if field.name == 'comment' %}
+                        <div class="">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            <textarea name="{{ field.name }}" id="{{ field.id }}" class="custom-textarea">{{ field.value }}</textarea>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Bottom Right CONTAINER -->
+            <div class="inner-right-bottom">
+
+                <!-- Choices Section -->
+                <div class="inner-right-bottom-left">
+                <div>
+                    {% for field in form %}
+                        {% if field.field.widget.input_type == 'select' %}
+                            <div class="choices-container">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                <select name="{{ field.name }}" id="{{ field.id }}">
+                                    {% for choice in field.field.widget.choices %}
+                                        <option value="{{ choice.0 }}" {% if choice.0 == field.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+
+                
+                <!-- SUbmit Button -->
+                <div class="inner-right-bottom-right">
+                    <button type="submit" class="py-2 px-6 opacity-80 rounded items-center bg-slate-950 hover:bg-slate-800">Submit</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+</div>
+{% endblock %}

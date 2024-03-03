@@ -20,5 +20,8 @@ class Client(models.Model):
     def full_name(self):
         return f"{self.firstname} {self.lastname}"
 
+    class Meta:
+        ordering = ('lastname',)
+
     def __str__(self):
         return self.full_name

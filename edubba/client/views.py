@@ -41,3 +41,12 @@ def clients_add(request):
         "form" : form
     })
 
+@login_required
+def clients_delete(request, pk):
+    client = get_object_or_404(Client, created_by=request.user, pk=pk)
+    client.delete()
+
+    messages.warning(request, "Client deleted")
+
+    return redirect("clients_list")
+

@@ -3,5 +3,109 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="py-6 px-6"><h1 class="text-xl">Dashboard</h1></div>
+<style>
+    .dashboard-items-container {
+        display: flex;
+        justify-content: space-between; 
+        margin: 0.5rem;
+        height: auto;
+    }
+    .dashboard-item {
+        background-color: #0f172a;
+        width: 11rem;
+        height: 13rem;
+        display: flex;
+        justify-content: start;
+        border-radius: 0.2rem;
+        flex-direction: column;
+        overflow-y:auto;    
+    }
+    .dashboard-item-headline {
+        background-color: #0f172a;
+        width: 11rem;
+        padding: 0.2rem;
+        height: auto;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        font-size: 1rem;  
+        font-weight: bold;  
+    }
+    .item-content-text-row {
+        border-bottom: solid 0.1rem;
+        border-color: #020617;  
+        padding-left : 0.4rem;
+        font-size: 0.9rem;
+    }
+    .module-headline {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        background-color: #020617;
+        border: solid 0.1rem;
+        border-radius: 0.5rem;
+        border-color: #0f172a;
+
+
+    }
+</style>
+
+<div class="headline"><h1 class="text-2xl">Dashboard</h1></div>
+
+
+<div class="content-box">
+    <div class="module-headline">
+        <h2>Newest leads</h2>
+    </div>
+    <div class="dashboard-items-container">        
+        <div class="dashboard-item-headline">Personal leads</div>
+        <div class="dashboard-item-headline">Personal clients</div>
+        <div class="dashboard-item-headline">Team Leads</div>
+        <div class="dashboard-item-headline">Team Clients</div>
+    </div>
+    <div class="dashboard-items-container">
+
+        <!-- User LEads-->
+        <div class="dashboard-item">
+        {% for lead in leads %}
+            {% if lead.created_by == user %}
+                <div class="item-content-text-row {% cycle 'bg-slate-800' 'bg-slate-900' %}">
+                    {{ lead.firstname }} {{ lead.lastname }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <!-- User CLients-->
+        <div class="dashboard-item">
+            {% for client in clients %}
+                {% if client.created_by == user %}
+                    <div class="item-content-text-row {% cycle 'bg-slate-800' 'bg-slate-900' %}">
+                        {{ client.firstname }} {{ client.lastname }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Newest Team Leads-->
+        <div class="dashboard-item">
+            {% for lead in leads %}
+            <div class="item-content-text-row {% cycle 'bg-slate-800' 'bg-slate-900' %}">
+                {{ lead.firstname }} {{ lead.lastname }}
+            </div>
+        {% endfor %}
+        </div>
+
+        <!-- Newest Team Client-->
+        <div class="dashboard-item">
+            {% for client in clients %}
+            <div class="item-content-text-row {% cycle 'bg-slate-800' 'bg-slate-900' %}">
+                {{ client.firstname }} {{ client.lastname }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

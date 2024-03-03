@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from team.models import Team
+
 # Create your models here.
 class Lead(models.Model):
     LOW = "low"
@@ -25,6 +27,7 @@ class Lead(models.Model):
         (LOST, "Lost")
     )
 
+    team = models.ForeignKey(Team, related_name='leads', on_delete=models.CASCADE)
     firstname = models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
     company = models.CharField(max_length=255)

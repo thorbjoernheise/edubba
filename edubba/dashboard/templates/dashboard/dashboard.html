@@ -16,20 +16,23 @@
         height: 13rem;
         display: flex;
         justify-content: start;
-        border-radius: 0.2rem;
+        border-radius: 0.3rem;
         flex-direction: column;
         overflow-y:auto;    
+        box-shadow: 2px 2px 8px #020617;
     }
     .dashboard-item-headline {
         background-color: #0f172a;
         width: 11rem;
         padding: 0.2rem;
+        border-radius: 0.3rem;
         height: auto;
         display: flex;
         flex-direction: column; 
         align-items: center;
-        font-size: 1rem;  
-        font-weight: bold;  
+        font-size: 1rem;
+        box-shadow: 2px 2px 8px #020617;  
+
     }
     .item-content-text-row {
         border-bottom: solid 0.1rem;
@@ -40,20 +43,27 @@
     .module-headline {
         display: flex;
         flex-direction: column; 
-        align-items: center;
-        background-color: #020617;
-        border: solid 0.1rem;
-        border-radius: 0.5rem;
-        border-color: #0f172a;
+        align-items: left;
+        margin-left: 0.4rem;
+        font-size: large;
 
-
+    }
+    .textbox{
+        margin-left: 0.4rem;
     }
 </style>
 
-<div class="headline"><h1 class="text-2xl">Dashboard</h1></div>
+<div class="headline">
+    Dashboard
+</div>
 
+<div class="content-box">    
+    <div class="textbox">
+        Welcome, User!
+    </div>
+</div>
 
-<div class="content-box">
+<div class="content-box bg-transparent">
     <div class="module-headline">
         <h2>Newest leads</h2>
     </div>

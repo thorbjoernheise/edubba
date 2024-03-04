@@ -5,23 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Tailwind CDN, delete later -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- google fonts api, delete later -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
     <title>{% block title %}{% endblock %}</title>
+
     <style>
         /* CSS for layout */
         body {
             background: rgb(2,6,23);
             background: linear-gradient(107deg, rgba(2,6,23,1) 0%, rgba(2,6,23,1) 54%, rgba(51,65,85,1) 100%);  
             background-attachment: fixed; /* Add this line to fix the background gradient */
-            color: #d1d5db
+            color: #d1d5db;
+        }
+        .top-menu{
+            font-family: "Montserrat", sans-serif;
         }
         .left-menu {
             position: fixed;
-            top: calc(4rem + 8px); /* Height of the top menu + 1px to avoid overlapping */
+            top: calc(5rem + 8px); /* Height of the top menu + 1px to avoid overlapping */
             left: 0;
             bottom: 3rem; /* Height of the footer */
             width: 16rem; /* Width of the left menu */
             overflow-y: auto; /* Enable vertical scrolling if the content exceeds the height */
+            font-family: "Montserrat", sans-serif;
         }
         .content {
             margin-left: 16rem; /* Width of the left menu 16rem original */
@@ -52,15 +65,20 @@
         }
         .headline {
             margin-top: 2rem;
-            margin-left: 8rem;
-            margin-bottom: 2rem;
+            margin-left: 4.25rem;
+            margin-bottom: 1rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.25rem; /* 36px */
+            line-height: 2.5rem; /* 40px */
         }
         .content-box {
             border-radius: 0.5rem;
-            margin-left: 8rem;
-            margin-right: 8rem;
+            margin-left: 4rem;
+            margin-right: 10rem;
             overflow: hidden;
-            background-color: rgba(15, 23, 42, 0.5);           
+            background-color: rgba(15, 23, 42, 0.5);
+            opacity: 0.8;
+            font-family: "Roboto";           
         }
     </style>
 
@@ -81,7 +99,7 @@
      
 
     <!-- Top-Menu -->
-    <nav class="fixed top-0 left-0 right-0 z-50 py-4 px-6 flex justify-between">
+    <nav class="top-menu fixed top-0 left-0 right-0 z-50 py-4 px-6 flex justify-between">
         <a href="/" class="text-white text-3xl hover:text-slate-800">edubba</a>
         <div class="py-1">
             {% if user.is_authenticated %}
